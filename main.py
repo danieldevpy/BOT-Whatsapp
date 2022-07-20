@@ -34,9 +34,9 @@ def bot():
 
         # REGISTRANDO CAMPO DE TEXTO
         campo_de_texto = driver.find_element_by_xpath(
-            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]')
+            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p')
 
-        # RESPONDENDO
+        # # RESPONDENDO
         actions.Decision(telefone_final, msg, campo_de_texto).reply()
 
         # VOLTAR PARA O CONTATO PADRÃO
