@@ -80,6 +80,8 @@ class Decision(Structure):
                 #funcoes.Update(self.number).updateSector(self.message)
                 self.text_field.send_keys(
                     f'*O setor do RH está inativo!*. ', Keys.ENTER)
+                self.text_field.send_keys(
+                    f'*Digite 1 para falar com o TI!*. ', Keys.ENTER)
             elif self.message != 1 or self.message != 2:
                 self.text_field.send_keys(
                     f'Porfavor, digite o *número* correspondente ao *setor* com que você deseja falar. ', mesma_linha)
@@ -149,7 +151,14 @@ class Decision(Structure):
                     funcoes.Finish(self.name, self.unity, finality, self.bd, self.position)
                     self.text_field.send_keys('*O chamado para abertura de login foi criado, '
                                               'em breve você será contatado pela equipe de TI!!*', Keys.ENTER)
-
+                else:
+                    if self.message != '0':
+                        self.text_field.send_keys(
+                            f'*Entendido, diga o que você precisa!*', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*1*. Problema na hora do login', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*2*. Criação de login', Keys.ENTER)
             # Escolha do primeiro menu, no valor 2
             elif self.stage == '0' and self.message == '2' or self.stage == '0.0' and self.message == '1' \
                     or new_stage == '2':
@@ -192,6 +201,20 @@ class Decision(Structure):
                                               Keys.ENTER)
                     # Finalizando chamado
                     funcoes.Finish(self.name, self.unity, finality, self.bd, self.position)
+                else:
+                    if self.message != '0':
+                        self.text_field.send_keys(
+                            f'*Qual tipo de problema?*', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*1*. Ocorrencia não chega', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*2*. Ocorrencia travada', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*3*. Não consigo logar no sistema', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*4*. Problemas físicos', mesma_linha)
+                        self.text_field.send_keys(
+                            f'*5*. Tablet não carrega', Keys.ENTER)
                 if self.stage == '2.1':
                     if self.message == '1':
                         funcoes.resetValues(self.bd, self.position, self.nameFile)
@@ -231,7 +254,7 @@ class Decision(Structure):
                     self.text_field.send_keys(
                         f'*Ok! Aguarde o suporte entrar em contato, para atualizar o seu Whatsapp!*', Keys.ENTER)
 
-            # Escolha do primeiro menu, no valor 1
+            # Escolha do primeiro menu, no valor 5
             elif self.stage == '0' and self.message == '5' or self.stage == '0.0' and self.message == '5' \
                     or new_stage == '5':
                 if self.stage == '0' and self.message == '5' or self.stage == '0.0' and self.message == '5':
@@ -244,7 +267,22 @@ class Decision(Structure):
                     funcoes.Finish(self.name, self.unity, finality, self.bd, self.position)
                     self.text_field.send_keys(
                         f'*A solicitação foi aberta e o suporte entrará em contato!*', Keys.ENTER)
-
+            else:
+                self.text_field.send_keys(
+                    f'*Você escolheu o setor de TI, agora digite o número correspondente ao motivo do contato*. ',
+                    mesma_linha)
+                self.text_field.send_keys(
+                    f'Digite *1* : Suporte Sistema SSO.', mesma_linha)
+                self.text_field.send_keys(
+                    f'Digite *2* : Problemas com tablet. ', mesma_linha)
+                self.text_field.send_keys(
+                    f'Digite *3* : Suporte para Computador/Impressora/Outros', mesma_linha)
+                self.text_field.send_keys(
+                    f'Digite *4* : Atualizar WhatsApp', mesma_linha)
+                self.text_field.send_keys(
+                    f'Digite *5* : Para falar com um tecnico', mesma_linha)
+                self.text_field.send_keys(
+                    f'*OBS: Sempre que precisar voltar para o inicio das opções digite 0.*', Keys.ENTER)
         # Após escolher o setor do RH
         elif self.sector == 2:
             pass

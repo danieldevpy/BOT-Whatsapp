@@ -1,5 +1,6 @@
 import pandas
 import requests
+import threading
 
 nameFile = 'bancodedados.xlsx'
 
@@ -87,12 +88,15 @@ class Update(Information):
         except RuntimeError:
             print('Error changing data')
 
+def req(title, message):
+    url = f'http://localhost:2000/{title}/{message}'
+    requests.get(url)
+
 
 def Finish(name, unity, message, bd, position):
     title = f'Chamado feito por {name} da unidade {unity}'
     try:
-        url = f'http://localhost:2000/{title}/{message}'
-        requests.get(url)
+        threading.Thread(target=req, args=(title, message)).start()
     except RuntimeError:
         print('SERVIDOR DESLIGADO')
 
